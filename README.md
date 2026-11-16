@@ -187,6 +187,50 @@ This project was developed to demonstrate practical experience with:
 - Integration between GitHub and Azure DevOps.
 
 ---
+## CI/CD Pipeline Management
+
+All four repositories are integrated with Azure DevOps Server using independent Classic Build Pipelines.
+
+Each repository has its own pipeline to manage its build and delivery lifecycle.
+
+### Pipeline Overview
+
+| Repository | Pipeline | Pipeline ID | Last Successful Build |
+|---|---|---:|---:|
+| Shared | Shared-CI | 19 | #264 |
+| Basket | Basket-CI | 22 | #270 |
+| Identity | Identity-CI | 20 | #268 |
+| Order | Order-CI | 21 | #271 |
+
+### Shared Pipeline Workflow
+
+The Shared pipeline automates the NuGet package lifecycle:
+
+1. NuGet Restore
+2. Build
+3. Test
+4. Pack
+5. Push NuGet Package to Azure Artifacts
+6. Publish Build Artifact
+
+### Application Pipeline Workflow
+
+The Basket, Identity, and Order pipelines automate:
+
+1. NuGet Restore
+2. Build
+3. Test
+4. Publish Build Artifact
+
+Application repositories consume the Shared NuGet package from the Azure DevOps Artifacts feed.
+
+### Pipeline Management
+
+Azure DevOps Classic Pipelines are used to configure and manage the build workflows.
+
+Each repository has an independent pipeline, allowing separate execution, monitoring, and maintenance.
+
+**Note:** Pipeline IDs and build numbers refer to the Azure DevOps Server learning environment used during project implementation.
 
 ## Project Repositories
 
